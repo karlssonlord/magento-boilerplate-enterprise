@@ -1,0 +1,71 @@
+<?php
+/**
+ * Build breadcrumbs for product if no click path is available in session
+ *
+ */
+if(count($crumbs) < 3) {
+    if ($product = Mage::registry('current_product')) {
+        if($categories = $product->getCategoryCollection()->load()) {
+            foreach($categories as $category) {
+                if($category) {
+                    $category = Mage::getModel('catalog/category')->load($category->getId());
+                    break;
+                }
+            }
+        }
+        $lastCrumbName = $product->getName();
+        $lastCategoryAdjust = 0;
+    }
+    else {
+        if($category = Mage::registry('current_category')) $lastCrumbName = $category->getName();
+        $lastCategoryAdjust = 1;
+    }
+
+    if(isset($category) && $path = $category->getPath()) {
+        $path = explode('/', $path);
+        $crumbs = array('home' => array('label' => 'Home',
+            'title' => 'Home',
+            'link'  => Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB),
+            'first' => true,
+            'last'  => false));
+        for($i = 2; $i < count($path) - $lastCategoryAdjust; $i++) {
+            $cur_category = Mage::getModel('catalog/category')->load($path[$i]);
+            if($cur_category && $cur_category->getIsActive()) {
+                $crumbs['category'.$path[$i]] = array('label' => $cur_category->getName(),
+                    'title' => $cur_category->getName(),
+                    'link'  => $cur_category->getUrl(),
+                    'first' => false,
+                    'last'  => false);
+            }
+        }
+        $crumbs['current'] = array(
+            'label' => $lastCrumbName,
+            'title' => '',
+            'link'  => '',
+            'first' => false,
+            'last'  => true);
+    }
+}
+
+if($crumbs && is_array($crumbs)) : $crumbs = array_slice($crumbs, 1); ?>
+    <?php if(count($crumbs) > 1) : ?>
+        <nav class="breadcrumbs">
+            <ul xmlns:v="http://rdf.data-vocabulary.org/#">
+                <?php foreach($crumbs as $_crumbName => $_crumbInfo) : ?>
+                    <li class="<?php echo $_crumbName ?>" typeof="v:Breadcrumb">
+                        <?php if($_crumbInfo['link']) : ?>
+                            <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->htmlEscape($_crumbInfo['title']) ?>" rel="v:url" property="v:title"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+                        <?php elseif($_crumbInfo['last']) : ?>
+                            <strong rel="v:child" property="v:title"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></strong>
+                        <?php else : ?>
+                            <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
+                        <?php endif; ?>
+                        <?php if(!$_crumbInfo['last']) : ?>
+                            <span>&rsaquo;</span>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,60 @@
+<?php
+$_product    = $this->getProduct();
+$_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
+
+if($_product->isSaleable() && count($_attributes)) : ?>
+    <?php foreach($_attributes as $_attribute) : ?>
+        <div class="product-attribute">
+            <label class="required"><?php echo $_attribute->getLabel() ?> <em>*</em></label>
+            <select name="super_attribute[<?php echo $_attribute->getAttributeId() ?>]" id="attribute<?php echo $_attribute->getAttributeId() ?>" class="required-entry super-attribute-select">
+                <option><?php echo $this->__('Choose %s', strtolower($_attribute->getLabel())) ?></option>
+            </select>
+        </div>
+    <?php endforeach; ?>
+
+    <script>
+        var spConfig;
+
+        document.observe('dom:loaded', function() {
+            Product.Config.prototype.fillSelect = function(element) {
+                var attributeId = element.id.replace(/[a-z]*/, '');
+                var options = this.getAttributeOptions(attributeId);
+                this.clearSelect(element);
+                element.options[0] = new Option('<?php echo $this->__('Select') ?> ' + element.config.label.toLowerCase(),'');
+
+                var prevConfig = false;
+                if(element.prevSetting){
+                    prevConfig = element.prevSetting.options[element.prevSetting.selectedIndex];
+                }
+
+                if(options) {
+                    var index = 1;
+                    for(var i=0;i<options.length;i++){
+                        var allowedProducts = [];
+                        if(prevConfig) {
+                            for(var j=0;j<options[i].products.length;j++){
+                                if(prevConfig.config.allowedProducts
+                                    && prevConfig.config.allowedProducts.indexOf(options[i].products[j])>-1){
+                                    allowedProducts.push(options[i].products[j]);
+                                }
+                            }
+                        } else {
+                            allowedProducts = options[i].products.clone();
+                        }
+
+                        if(allowedProducts.size()>0){
+                            options[i].allowedProducts = allowedProducts;
+                            element.options[index] = new Option(this.getOptionLabel(options[i], options[i].price), options[i].id);
+                            if (typeof options[i].price != 'undefined') {
+                                element.options[index].setAttribute('price', options[i].price);
+                            }
+                            element.options[index].config = options[i];
+                            index++;
+                        }
+                    }
+                }
+            }
+            spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+        });
+    </script>
+<?php endif;?>

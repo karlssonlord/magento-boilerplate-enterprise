@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <KL_Boilerplate>
+            <version>1.0.0</version>
+        </KL_Boilerplate>
+    </modules>    
+    <global>
+        <models>
+            <core>
+                <rewrite>
+                    <design_package>KL_Boilerplate_Model_Design_Package</design_package>
+                </rewrite>
+            </core>
+        </models>
+    </global>
+</config>

@@ -1,0 +1,22 @@
+<?php
+/**
+ * @var $this Mage_Reports_Block_Product_Viewed
+ *
+ */
+
+if($_products = $this->getRecentlyViewedProducts()) : ?>
+    <div class="block block-list block-viewed">
+        <div class="block-title">
+            <h3><?php echo $this->__('Recently Viewed Products') ?></h3>
+        </div>
+        <div class="block-content">
+            <ol>
+                <?php foreach($_products as $_item) : ?>
+                    <li class="item">
+                        <a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,18 @@
+<header role="banner">
+    <?php echo $this->getChildHtml('topLinks') ?>
+    <?php echo $this->getChildHtml('topCart') ?>
+    <strong class="logo">
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
+            <img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" width="64" height="64" />
+        </a>
+    </strong>
+    <p><?php echo $this->getWelcome() ?> <?php echo $this->getAdditionalHtml() ?></p>
+    <nav class="quick-access">
+        <?php echo $this->getChildHtml('store_language') ?>
+    </nav>
+    <?php echo $this->getChildHtml('topContainer'); ?>
+</header>
+<nav role="navigation">
+    <?php echo $this->getChildHtml('topSearch') ?>
+    <?php echo $this->getChildHtml('topMenu') ?>
+</nav>

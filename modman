@@ -1,0 +1,4 @@
+app/code/community/KL/*   app/code/community/KL/
+app/design/frontend/kl/*  app/design/frontend/kl/
+app/etc/modules/*         app/etc/modules/
+skin/frontend/kl/*        skin/frontend/kl/

@@ -1,0 +1,36 @@
+<?php
+$columns = $this->getColumns();
+?>
+
+<?php if (count($this->getItems())) : ?>
+    <ul class="wishlist">
+    <?php foreach($this->getItems() as $i => $item): ?>
+        <li class="item" id="item_<?php echo $item->getId();?>">
+            <?php foreach($columns as $count => $column) : ?>
+                <?php if($count === 0) : ?>
+                    <div class="product-media">
+                        <?php echo $column->setItem($item)->toHtml($item); ?>
+                    </div>
+                    <div class="product-info">
+                <?php else : ?>
+                    <?php echo $column->setItem($item)->toHtml($item); ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </div>
+            <hr />
+        </li>
+    <?php endforeach ?>
+    </ul>
+<?php else: ?>
+    <p class="wishlist-empty"><?php echo $this->__('This Wishlist has no Items');?></p>
+<?php endif; ?>
+
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getAdditionalHtml();?>
+<?php endforeach; ?>
+
+<script>
+    <?php foreach ($columns as $column): ?>
+        <?php echo $column->getJs();?>
+    <?php endforeach; ?>
+</script>

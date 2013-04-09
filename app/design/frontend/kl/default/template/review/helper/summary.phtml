@@ -1,0 +1,16 @@
+<?php if ($this->getReviewsCount() && $this->getRatingSummary()) : ?>
+    <?php $_showReviewLink = Mage::registry('showReviewLink') ? true : false; ?>
+    <div class="product-rating"<?php if($_showReviewLink) : ?> itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"<?php endif; ?>>
+        <?php
+        $_rating = $this->getRatingSummary()/20;
+        $_ratingStars = str_repeat('&#9733;', $rating = round($_rating)).
+            str_repeat('&#9734;', 5-round($_rating));
+        if($_showReviewLink) : ?>
+            <meta itemprop="ratingValue" content="<?php echo $_rating; ?>" />
+            <meta itemprop="reviewCount" content="<?php echo $this->getReviewsCount(); ?>" />
+            <a href="#customer-reviews"><?php echo $_ratingStars; ?></a>
+        <?php else : ?>
+            <?php echo $_ratingStars; ?>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,16 @@
+<?php
+/**
+ * Create account form template
+ *
+ * @see Enterprise_Customer_Block_Form
+ * @var $this Enterprise_Customer_Block_Form
+ *
+ */
+
+if($this->hasUserDefinedAttributes()) : ?>
+    <?php foreach($this->getUserDefinedAttributes() as $attribute) : ?>
+        <?php if($attributeContent = $this->getAttributeHtml($attribute)) : ?>
+            <?php echo $attributeContent;?>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endif; ?>

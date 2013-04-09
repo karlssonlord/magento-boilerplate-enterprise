@@ -1,0 +1,24 @@
+<?php
+/**
+ * Product list toolbar
+ *
+ * @see Mage_Catalog_Block_Product_List_Toolbar
+ */
+?>
+<?php if($this->getCollection()->getSize()) : ?>
+<div class="toolbar">
+    <?php if( $this->isExpanded()) : ?>
+        <div class="sorter">
+            <select onchange="setLocation(this.value)">
+                <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+                    <option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php echo $this->isOrderCurrent($_key) ? ' selected="selected"' : ''; ?>>
+                        <?php echo $this->__($_order) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    <?php endif; ?>
+
+    <?php echo $this->getPagerHtml() ?>
+</div>
+<?php endif ?>

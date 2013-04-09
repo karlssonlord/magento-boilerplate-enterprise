@@ -1,0 +1,36 @@
+<?php
+/**
+ * @var $this Enterprise_Rma_Block_Return_History
+ *
+ */
+
+$_returns = $this->getReturns(); ?>
+<div class="page-title">
+    <h1><?php echo $this->__('My Returns') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml(),
+    $this->getChildHtml('info'),
+    $this->getPagerHtml(); ?>
+<?php if($_returns->getSize()) : ?>
+    <table class="data-table" id="my-returns-table">
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Return #') ?></th>
+                <th><?php echo $this->__('Date') ?></th>
+                <th><?php echo $this->__('Return Status') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($_returns as $_return) : ?>
+            <tr>
+                <td><a href="<?php echo $this->getViewUrl($_return) ?>"><?php echo $_return->getIncrementId() ?></a></td>
+                <td><span class="nobr"><?php echo Mage::helper('enterprise_rma')->getFormatedDate($_return->getDateRequested()) ?></span></td>
+                <td><em><?php echo $this->escapeHtml($_return->getStatusLabel()) ?></em></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else : ?>
+    <p><?php echo $this->__('You have placed no returns.'); ?></p>
+<?php endif ?>

@@ -1,0 +1,226 @@
+<?php
+$_rma = $this->getRma();
+$_order = $this->getOrder();
+$additionalData = $this->getAdditionalData();
+?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('RMA') ?> #<?php echo $_rma->getIncrementId()?><span> - <?php echo $this->escapeHtml($_rma->getStatusLabel()) ?></span></h1>
+</div>
+
+<ul>
+    <li><?php echo $this->__('Order ID') ?>: <a href="<?php echo $this->getOrderUrl($_rma) ?>"><?php echo $this->escapeHtml($_rma->getOrderIncrementId()) ?></a></li>
+    <li><?php echo $this->__('Date Requested') ?>: <?php echo Mage::helper('enterprise_rma')->getFormatedDate($_rma->getDateRequested()) ?></li>
+    <li><?php echo $this->__('Email Address') ?>: <?php echo $this->escapeHtml($_order->getCustomerEmail()) ?></li>
+    <?php if($_rma->getCustomerCustomEmail()) : ?>
+        <li><?php echo $this->__('Contact Email Address') ?>: <?php echo $this->escapeHtml($_rma->getCustomerCustomEmail()) ?></li>
+    <?php endif; ?>
+</ul>
+
+<h2><?php echo $this->__('Shipping Address') ?></h2>
+<address class="box-content">
+    <?php echo $this->getAddress(); ?>
+</address>
+
+
+<span id="rma-please-wait" class="please-wait" style="display:none;">
+    <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="" class="v-middle" /> <?php echo $this->__('Please wait, loading...') ?>
+</span>
+<?php $trackingNumbers = $this->getTrackingNumbers() ?>
+<?php if ($this->isPrintShippingLabelAllowed() || $trackingNumbers->count()): ?>
+    <form method="post" id="rma_track_info">
+        <div class="box">
+            <div class="block-title">
+                <h3><?php echo $this->__('Shipping and Tracking Information') ?></h3>
+            </div>
+            <div class="box-content" style="padding:.5em">
+                <div class="a-right">
+                <?php if ($trackingNumbers->count()): ?>
+                    <a class="f-left"
+                        href="#"
+                        onclick="popWin('<?php echo $this->helper('enterprise_rma')->getTrackingPopupUrlBySalesModel($this->getRma()) ?>','trackshipment','width=800,height=600,top=0,left=0,resizable=yes,scrollbars=yes'); return false;"
+                        title="<?php echo $this->__('Track this shipment') ?>">
+                            <?php echo $this->__('Track this shipment') ?>
+                    </a>
+                <?php endif ?>
+                <?php if ($this->canShowButtons()): ?>
+                    <?php echo $this->getPrintShippingLabelButton() ?>
+                    <?php echo $this->getShowPackagesButton() ?>
+                <?php endif; ?>
+                </div>
+                <table class="data-table" id="track-info-table">
+                    <thead>
+                        <tr>
+                            <th><span class="nobr"><?php echo $this->__('Carrier') ?></span></th>
+                            <th><span class="nobr"><?php echo $this->__('Number') ?></span></th>
+                            <th><span class="nobr"><?php echo $this->__('Action') ?></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="track-info-tbody">
+                        <?php echo $this->getTrackingInfo('tracking') ?>
+                    </tbody>
+                    <?php if ($this->isPrintShippingLabelAllowed()): ?>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    <select name="tracking_carrier_select" id="tracking_carrier_select" class="input-text required-entry f-fix">
+                                        <option value = ""></option>
+                                        <?php foreach($this->getCarriers() as $key => $value): ?>
+                                            <option value="<?php echo $key ?>"><?php echo $this->escapeHtml($value) ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="input-text required-entry f-fix" value="" name="tracking_number_input" id="tracking_number_input">
+                                </td>
+                                <td>
+                                    <button type="button" class="button" onclick="addTrackNumber()" title="<?php echo $this->__('Add') ?>"><span><span><?php echo $this->__('Add') ?></span></span></button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    <?php endif ?>
+                </table>
+            </div>
+        </div>
+    </form>
+    <script>
+        var trackDataForm = new VarienForm('rma_track_info', false);
+        decorateTable('track-info-table');
+
+        function addTrackNumber() {
+            if (trackDataForm.validator.validate()) {
+                new Ajax.Updater('track-info-tbody', '<?php echo $this->getAddLabelUrl() ?>', {
+                    onCreate: function() { $('rma-please-wait').show() },
+                    onComplete: function() {
+                        $('rma-please-wait').hide();
+                        decorateTable('track-info-table');
+                    },
+                    method: 'post',
+                    parameters : {
+                        carrier: $("tracking_carrier_select").value,
+                        number: $("tracking_number_input").value
+                    }
+                });
+            }
+        }
+    </script>
+    <div class="wrapper"></div>
+<?php endif ?>
+
+<div class="block-title">
+    <h3><?php echo $this->__('Items Return Requested For') ?></h3>
+</div>
+<table class="data-table" id="my-returns-items-table">
+    <thead>
+        <tr>
+            <th><span class="nobr"><?php echo $this->__('Product') ?></span></th>
+            <th><?php echo $this->__('Condition') ?></th>
+            <th><?php echo $this->__('Resolution') ?></th>
+            <th><span class="nobr"><?php echo $this->__('Request Qty') ?></span></th>
+            <th><?php echo $this->__('Status') ?></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->getItems() as $key=>$item): ?>
+        <tr>
+            <td>
+                <strong><?php echo $this->escapeHtml($item->getProductName()) ?></strong>
+                <div><?php echo $this->escapeHtml($item->getProductSku()) ?></div>
+                <?php if($_options = $this->getItemOptions($item)): ?>
+                <dl class="item-options">
+                <?php foreach ($_options as $_option) : ?>
+                    <dt><?php echo $this->escapeHtml($_option['label']) ?></dt>
+                    <dd><?php echo $_option['value'] ?></dd>
+                <?php endforeach; ?>
+                </dl>
+                <?php endif; ?>
+            </td>
+            <td><?php echo $this->escapeHtml($this->getAttributeValue($item->getId(), 'condition')) ?></td>
+            <td><?php echo $this->escapeHtml($this->getAttributeValue($item->getId(), 'resolution')) ?></td>
+            <td><?php echo $this->escapeHtml($this->helper('enterprise_rma')->parseQuantity($item->getQtyRequested(), $item)); ?> (<?php echo $this->__('of'); ?> <?php echo $this->escapeHtml($this->helper('enterprise_rma')->getQty($item));?>)</td>
+            <td><span class="nobr"><?php echo $this->escapeHtml($item->getStatusLabel()) ?></span></td>
+            <td>
+                <a id="as_<?php echo $key ?>" href="javascript:void(0)" onclick="showHiddenForm(<?php echo $key ?>)"><?php echo $this->__('Show Details') ?></a>
+                <a id="ah_<?php echo $key ?>" style="display:none" href="javascript:void(0)" onclick="hideHiddenForm(<?php echo $key ?>)"><?php echo $this->__('Hide Details') ?></a>
+            </td>
+        </tr>
+        <tr id="shf_<?php echo $key ?>" style="display:none">
+            <td colspan="8" style="background:#F5F5F5;">
+                <div style="display:inline; float:left;width:40%;"><?php echo $this->__('Questions') ?>:</div>
+                <div style="display:inline; float:left;width:40%;"><?php echo $this->__('Answers') ?>:</div>
+                <div style="clear: both;"></div>
+                <?php $i = 0; ?>
+                <?php foreach($this->getRealValueAttributes($item->getId()) as $code=>$attribute): ?>
+                    <?php if (!in_array($code, $this->getAttributeFilter()) && !empty($attribute['value']) && $this->getAttributeLabel($item->getId(), $code)): $i++;?>
+                        <div style="display:inline; float:left;width:40%;padding-left:20px"><li><?php echo $this->getAttributeLabel($item->getId(), $code) ?></li></div>
+                        <div style="display:inline; float:left;width:40%;"><li><?php echo $this->getAttributeValue($item->getId(), $code) ?></li></div>
+                        <div style="clear: both;"></div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </td>
+        </tr>
+        <?php if (!$i): ?>
+            <script>
+                $('shf_'+<?php echo $key?>).remove();
+                $('as_'+<?php echo $key?>).remove();
+                $('ah_'+<?php echo $key?>).remove();
+            </script>
+        <?php endif; ?>
+        <?php endforeach; ?>
+        <tr><td colspan="8"></td></tr>
+    </tbody>
+</table>
+<script>
+    function showHiddenForm(key)
+    {
+        $('shf_'+key).show();
+        $('as_'+key).hide();
+        $('ah_'+key).show();
+    }
+    function hideHiddenForm(key)
+    {
+        $('shf_'+key).hide();
+        $('as_'+key).show();
+        $('ah_'+key).hide();
+    }
+</script>
+
+<form method="post" id="rma_comment" action="<?php echo $this->getSubmitUrl() ?>">
+    <div class="box">
+        <div class="block-title"><h2><?php echo $this->__('Leave Comment') ?></h2></div>
+
+        <div class="box-content">
+            <textarea id="rma_comment_text" cols="5" rows="3" name="comment" class="required-entry"></textarea>
+            <p><button type="submit" class="button" id="submit.save"><span><?php echo $this->__('Submit Comment')?></span></button></p>
+
+            <hr />
+
+            <?php $_comments = $this->getComments(); ?>
+            <?php if (!empty($_comments)) : ?>
+                <?php foreach($_comments as $_comment): ?>
+                    <?php if ($_comment->getIsVisibleOnFront()): ?>
+                        <article>
+                            <strong><?php echo $this->formatDate($_comment->getCreatedAt()) ?> <?php echo $this->formatTime($_comment->getCreatedAt()) ?></strong>
+                            –
+                            <strong>
+                                <?php if ($_comment->getIsAdmin()): ?>
+                                    <?php echo $this->__('Customer Service')?>
+                                <?php else: ?>
+                                    <?php echo $this->escapeHtml($this->getCustomerName())?>
+                                <?php endif; ?>
+                            </strong>
+                            <p>
+                                <?php echo nl2br($this->escapeHtml($_comment->getComment())); ?>
+                            </p>
+                            <div class="divider"></div>
+                        </article>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</form>
+<script>
+    var dataForm = new VarienForm('rma_comment', true);
+</script>

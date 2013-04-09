@@ -1,0 +1,12 @@
+<?php
+/**
+ * @var $this Mage_ProductAlert_Block_Product_View
+ *
+ */
+?>
+<div class="<?php echo $this->getHtmlClass() ?>">
+    <h4><?php echo $this->__('The product is out of stock'); ?></h4>
+    <a href="<?php echo $this->escapeHtml($this->getSignupUrl()) ?>" title="<?php echo $this->escapeHtml($this->__($this->getSignupLabel())); ?>">
+        <span class="icon-letter-grey"></span> <?php echo $this->__('Notify me when it\'s back in stock'); ?>
+    </a>
+</div>

@@ -27,6 +27,8 @@
             <action method="removeItem"><type>js</type><name>mage/translate.js</name></action>
             <action method="removeItem"><type>js</type><name>mage/cookies.js</name></action>
             <action method="removeItem"><type>skin_js</type><name>js/scripts.js</name></action>
+            <action method="removeItem"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
+            <action method="removeItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action>
             <action method="removeItem"><type>skin_js</type><name>js/iehover-fix.js</name></action>
             <action method="unsetChild"><name>js_cookies</name></action>
             <remove name="right.permanent.callout"/>
@@ -36,11 +38,11 @@
 
             <!-- Add items to head -->
             <action method="addItem"><type>skin_js</type><name>js/html5shiv.js</name><params/><if>lt IE 9</if></action>
-            <block type="googleanalytics/ga" name="analytics" template="googleanalytics/ga.phtml" />
+            <!-- block type="googleanalytics/ga" name="google_analytics" alias="analytics" template="googleanalytics/ga.phtml" / -->
         </reference>
 
         <reference name="after_body_start">
-            <remove name="google_analytics"/>
+            <!-- remove name="google_analytics"/ -->
         </reference>
 
         <reference name="root">
@@ -60,8 +62,13 @@
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
+                <action method="addItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action>
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
+
+                <!-- Add our own JavaScript -->
+                <action method="addItem"><type>skin_js</type><name>js/script.js</name></action>
             </block>
         </reference>
     </default>

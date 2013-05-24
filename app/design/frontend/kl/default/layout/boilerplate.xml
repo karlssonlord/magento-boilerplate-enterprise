@@ -91,6 +91,12 @@
 
     <!-- CATALOG -->
 
+    <catalog_category_default>
+        <reference name="product_list">
+            <block type="catalog/product_list" name="productList" template="catalog/product/list/list.phtml" />
+        </reference>
+    </catalog_category_default>
+
     <catalog_product_compare_index>
         <reference name="head">
             <!-- Remove native JavaScript from head -->

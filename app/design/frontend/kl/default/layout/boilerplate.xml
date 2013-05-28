@@ -46,6 +46,8 @@
         </reference>
 
         <reference name="root">
+            <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+
             <block type="page/html_head" name="foot" as="foot" template="page/html/foot.phtml">
                 <!-- Add native JavaScript that we have removed from head -->
                 <action method="addJs"><script>lib/ccard.js</script></action>
@@ -96,6 +98,12 @@
             <block type="catalog/product_list" name="productList" template="catalog/product/list/list.phtml" />
         </reference>
     </catalog_category_default>
+
+    <catalog_category_layered>
+        <reference name="product_list">
+            <block type="catalog/product_list" name="productList" template="catalog/product/list/list.phtml" />
+        </reference>
+    </catalog_category_layered>
 
     <catalog_product_compare_index>
         <reference name="head">

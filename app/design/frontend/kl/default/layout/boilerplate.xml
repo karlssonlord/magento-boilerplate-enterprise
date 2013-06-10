@@ -65,8 +65,6 @@
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
-                <!-- Wishlist JS not needed? -->
-                <!-- action method="addItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action -->
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
@@ -152,4 +150,10 @@
             <block type="catalog/product_list" name="productList" template="catalog/product/list/list.phtml" />
         </reference>
     </catalogsearch_result_index>
+
+    <wishlist_index_index>
+        <reference name="head">
+           <action method="addItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action>
+        </reference>
+    </wishlist_index_index>
 </layout>

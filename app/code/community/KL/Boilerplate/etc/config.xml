@@ -4,7 +4,7 @@
         <KL_Boilerplate>
             <version>1.0.0</version>
         </KL_Boilerplate>
-    </modules>    
+    </modules>
     <global>
         <models>
             <core>
@@ -14,4 +14,13 @@
             </core>
         </models>
     </global>
+    <frontend>
+        <layout>
+            <updates>
+                <boilerplate>
+                    <file>boilerplate.xml</file>
+                </boilerplate>
+            </updates>
+        </layout>
+    </frontend>
 </config>

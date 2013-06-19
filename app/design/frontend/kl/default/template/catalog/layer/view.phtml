@@ -13,7 +13,7 @@
         <?php echo $this->getStateHtml() ?>
         <div class="block-content">
             <?php if($this->canShowOptions()): ?>
-                <p class="block-subtitle"><?php echo $this->__('Shopping Options') ?></p>
+                <h3><?php echo $this->__('Shopping Options') ?></h3>
                 <dl>
                     <?php $_filters = $this->getFilters() ?>
                     <?php foreach ($_filters as $_filter): ?>

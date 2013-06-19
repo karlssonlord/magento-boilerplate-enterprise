@@ -19,6 +19,7 @@ class KL_Boilerplate_Model_Design_Package extends Mage_Core_Model_Design_Package
             array('_theme' => $this->getFallbackTheme()),
             array('_theme' => self::DEFAULT_THEME),
             array('_theme' => self::DEFAULT_THEME, '_package' => 'kl'),
+            array('_theme' => self::DEFAULT_THEME, '_package' => 'enterprise'),
             array('_theme' => self::DEFAULT_THEME, '_package' => 'default'),
         ));
         Varien_Profiler::stop(__METHOD__);
@@ -49,6 +50,7 @@ class KL_Boilerplate_Model_Design_Package extends Mage_Core_Model_Design_Package
                 array('_theme' => $this->getFallbackTheme()),
                 array('_theme' => self::DEFAULT_THEME),
                 array('_theme' => self::DEFAULT_THEME, '_package' => 'kl'),
+                array('_theme' => self::DEFAULT_THEME, '_package' => 'enterprise'),
                 array('_theme' => self::DEFAULT_THEME, '_package' => 'default'),
             ));
         }

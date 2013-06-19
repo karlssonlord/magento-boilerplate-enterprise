@@ -1,13 +1,13 @@
-<?php if ($this->hasItems()): ?>
-    <section class="up-sell">
+<?php if($this->getItems()->getSize()): ?>
+    <section class="box-collateral box-related">
         <header>
-            <h2><?php echo $this->__('You may also be interested in the following product(s)') ?></h2>
+            <h2><?php echo $this->__('Related Products') ?></h2>
         </header>
         <?php // Use generic product list template
         $this->getChild('productList')->setData(array(
-            'products' => $this->getItemCollection(),
+            'products' => $this->getItems(),
             'toolbar'  => true));
         echo $this->getChildHtml('productList');
         ?>
     </section>
-<?php endif ?>
+<?php endif; ?>

@@ -8,7 +8,7 @@
         placeholder="<?php echo $this->__('Search') ?>" />
     <input type="hidden" name="order" value="relevance" />
     <input type="hidden" name="dir" value="desc" />
-    <input type="submit" title="<?php echo $this->__('Search') ?>" />
+    <button type="submit"><span><?php echo $this->__('Search') ?></span></button>
     <div id="search_autocomplete" class="search-autocomplete"></div>
     <script>
         document.observe('dom:loaded', function() {

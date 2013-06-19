@@ -46,6 +46,8 @@
         </reference>
 
         <reference name="root">
+            <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+
             <block type="page/html_head" name="foot" as="foot" template="page/html/foot.phtml">
                 <!-- Add native JavaScript that we have removed from head -->
                 <action method="addJs"><script>lib/ccard.js</script></action>
@@ -63,7 +65,6 @@
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
-                <action method="addItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action>
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
@@ -90,6 +91,18 @@
 
 
     <!-- CATALOG -->
+
+    <catalog_category_default>
+        <reference name="product_list">
+            <block type="catalog/product_list" name="productList" template="catalog/product/list/list.phtml" />
+        </reference>
+    </catalog_category_default>
+
+    <catalog_category_layered>
+        <reference name="product_list">
+            <block type="catalog/product_list" name="productList" template="catalog/product/list/list.phtml" />
+        </reference>
+    </catalog_category_layered>
 
     <catalog_product_compare_index>
         <reference name="head">
@@ -126,5 +139,21 @@
                 <action method="addJs"><script>varien/configurable.js</script></action>
             </reference>
         </reference>
+
+        <reference name="product.info.upsell">
+            <block type="catalog/product_list_upsell" name="productList" template="catalog/product/list/list.phtml" />
+        </reference>
     </catalog_product_view>
+
+    <catalogsearch_result_index>
+        <reference name="search_result_list">
+            <block type="catalog/product_list" name="productList" template="catalog/product/list/list.phtml" />
+        </reference>
+    </catalogsearch_result_index>
+
+    <wishlist_index_index>
+        <reference name="head">
+           <action method="addItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action>
+        </reference>
+    </wishlist_index_index>
 </layout>

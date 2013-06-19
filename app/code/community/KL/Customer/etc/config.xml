@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <KL_Customer>
+            <version>1.0.0</version>
+        </KL_Customer>
+    </modules>
+    <global>
+        <blocks>
+            <customer>
+                <rewrite>
+                    <address_edit>KL_Customer_Block_Address_Edit</address_edit>
+                    <account_navigation>KL_Customer_Block_Account_Navigation</account_navigation>
+                </rewrite>
+            </customer>
+        </blocks>
+    </global>
+</config>

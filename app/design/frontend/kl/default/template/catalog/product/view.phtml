@@ -10,8 +10,9 @@ $_helper = $this->helper('catalog/output');
 $_product = $this->getProduct();
 ?>
 <script>
+    var optionsPrice;
     document.observe('dom:loaded', function() {
-        var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+        optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
     });
 </script>
 
@@ -141,8 +142,9 @@ $_product = $this->getProduct();
             </div>
         <?php endforeach;?>
 
-        <?php echo $this->getChildHtml('upsell_products') ?>
         <?php echo $this->getChildHtml('product_additional_data') ?>
     </div>
 
 </div>
+
+<?php echo $this->getChildHtml('upsell_products') ?>

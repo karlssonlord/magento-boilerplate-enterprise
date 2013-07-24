@@ -68,8 +68,12 @@
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
-                <!-- Add our own JavaScript -->
-                <action method="addItem"><type>skin_js</type><name>js/script.js</name></action>
+                <!-- Makes sure the package script.js is the last one to be outputted -->
+                <action method="addItem">
+                    <type>skin_js</type>
+                    <name>js/script.js</name>
+                    <params><![CDATA[name="z-so-im-the-last-one"]]></params>
+                </action>
             </block>
         </reference>
     </default>

@@ -19,9 +19,10 @@ $_helper = $this->helper('catalog/output');
          * be of the same type as this one.
          */
         $this->getChild('productList')->setData(array(
-            'products' => $_productCollection,
-            'toolbar'  => true));
+            'products' => $_productCollection));
         echo $this->getChildHtml('productList');
         ?>
+
+        <?php echo $this->getToolbarHtml(); ?>
     </div>
 <?php endif; ?>

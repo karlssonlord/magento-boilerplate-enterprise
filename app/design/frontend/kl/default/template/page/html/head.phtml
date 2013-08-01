@@ -14,8 +14,12 @@
     <meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
-    <link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+    <?php // Check if favicon is available in theme, else fallback
+    $favicon = strpos($this->getSkinUrl('images/favicon.png'), 'base/default') !== false ?
+        $this->getFaviconFile() : $this->getSkinUrl('images/favicon.png');
+    ?>
+    <link rel="icon" href="<?php echo $favicon; ?>" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?php echo $favicon; ?>" type="image/x-icon" />
 
     <?php echo $this->getCssJsHtml() ?>
     <?php echo $this->getChildHtml() ?>

@@ -1,13 +1,13 @@
-<?php if($this->getItems()->getSize()): ?>
+<?php if($this->getItemsCount()): ?>
     <section class="box-collateral box-related">
         <header>
             <h2><?php echo $this->__('Related Products') ?></h2>
         </header>
         <?php // Use generic product list template
         $this->getChild('productList')->setData(array(
-            'products' => $this->getItems(),
-            'toolbar'  => true));
-        echo $this->getChildHtml('productList');
+            'products' => $this->getItemCollection(),
+            'toolbar'  => false));
+        echo $this->getChildHtml();
         ?>
     </section>
 <?php endif; ?>

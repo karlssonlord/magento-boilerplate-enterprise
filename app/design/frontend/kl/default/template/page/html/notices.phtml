@@ -1,0 +1,11 @@
+<?php
+/**
+ * Global Notices
+ * @var $this Mage_Page_Block_Html_Notices
+ */
+?>
+<?php if($this->displayDemoNotice()) : ?>
+    <div class="alert--demo">
+        <?php echo $this->__('This is a demo store. Any orders placed through this store will not be honored or fulfilled.') ?>
+    </div>
+<?php endif; ?>

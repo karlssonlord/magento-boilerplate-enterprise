@@ -12,15 +12,13 @@
     <label for="message"><?php echo $this->__('Message') ?></label>
     <textarea id="message" name="message" cols="60" rows="5"><?php echo $this->getEnteredData('message') ?></textarea>
 
-    <?php if($this->helper('wishlist')->isRssAllow()): ?>
-        <label for="rss_url">
-            <input type="checkbox"
-                name="rss_url"
-                id="rss_url"
-                value="1"
-                title="<?php echo $this->__('Check this checkbox if you want to add a link to an rss feed to your wishlist.') ?>" />
-            <?php echo $this->__('Check this checkbox if you want to add a link to an rss feed to your wishlist.') ?>
-        </label>
+    <?php if($this->helper('wishlist')->isRssAllow()) : ?>
+        <input type="checkbox"
+            name="rss_url"
+            id="rss_url"
+            value="1"
+            title="<?php echo $this->__('Check this checkbox if you want to add a link to an rss feed to your wishlist.') ?>" />
+        <label for="rss_url"><?php echo $this->__('Check this checkbox if you want to add a link to an rss feed to your wishlist.') ?></label>
     <?php endif; ?>
 
     <p class="required"><small><?php echo $this->__('* Required Fields') ?></small></p>

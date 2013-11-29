@@ -16,9 +16,17 @@
         <label for="email_address" class="required"><?php echo $this->__('Email Address') ?> <em>*</em></label>
         <input type="email" name="email" id="email_address" value="<?php echo $this->htmlEscape($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
 
-        <?php if ($this->isNewsletterEnabled()): ?>
-            <label for="is_subscribed"><input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" /> <?php echo $this->__('Sign Up for Newsletter') ?></label>
-        <?php endif ?>
+        <?php if($this->isNewsletterEnabled()) : ?>
+            <input type="checkbox"
+                name="is_subscribed"
+                title="<?php echo $this->__('Sign Up for Newsletter') ?>"
+                value="1"
+                id="is_subscribed"
+                <?php if($this->getFormData()->getIsSubscribed()): ?>
+                    checked="checked"
+                <?php endif; ?> />
+            <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+        <?php endif; ?>
 
         <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
         <?php if ($_dob->isEnabled()): ?>

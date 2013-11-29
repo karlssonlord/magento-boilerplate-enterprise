@@ -55,7 +55,12 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
     <?php if($this->helper('wishlist')->isAllowInCart()) : ?>
         <td class="a-center">
             <?php if ($isVisibleProduct): ?>
-            <input type="checkbox" value="1" name="cart[<?php echo $_item->getId() ?>][wishlist]" title="<?php echo $this->__('Move to Wishlist') ?>" class="checkbox" />
+                <input type="checkbox"
+                    value="1"
+                    name="cart[<?php echo $_item->getId() ?>][wishlist]"
+                    id="add-to-wishlist_<?php echo $_item->getId() ?>"
+                    title="<?php echo $this->__('Move to Wishlist') ?>" />
+                <label for="add-to-wishlist_<?php echo $_item->getId() ?>"></label>
             <?php endif ?>
         </td>
     <?php endif; ?>

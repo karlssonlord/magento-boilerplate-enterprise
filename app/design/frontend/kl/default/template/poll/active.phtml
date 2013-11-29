@@ -22,10 +22,12 @@
                     <ul id="poll-answers">
                         <?php foreach( $poll_answers as $answer ): ?>
                             <li>
-                                <label for="vote_<?php echo $answer->getId() ?>">
-                                    <input type="radio" name="vote" class="radio poll_vote" id="vote_<?php echo $answer->getId() ?>" value="<?php echo $answer->getAnswerId() ?>" />
-                                    <?php echo $this->htmlEscape($answer->getAnswerTitle()) ?>
-                                </label>
+                                <input type="radio"
+                                    name="vote"
+                                    class="radio poll_vote"
+                                    id="vote_<?php echo $answer->getId() ?>"
+                                    value="<?php echo $answer->getAnswerId() ?>" />
+                                <label for="vote_<?php echo $answer->getId() ?>"><?php echo $this->htmlEscape($answer->getAnswerTitle()) ?></label>
                             </li>
                         <?php endforeach; ?>
                     </ul>

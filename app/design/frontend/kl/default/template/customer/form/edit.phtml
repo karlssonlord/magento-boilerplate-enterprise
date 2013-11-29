@@ -22,15 +22,22 @@
             <?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?>
         <?php endif ?>
     <?php endif; ?>
-    <label for="change_password">
-        <input type="checkbox" name="change_password" id="change_password" value="1" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" />
-        <?php echo $this->__('Change Password') ?>
-    </label>
+
+    <input type="checkbox"
+        name="change_password"
+        id="change_password"
+        value="1"
+        title="<?php echo $this->__('Change Password') ?>"
+        <?php if($this->getCustomer()->getChangePassword()==1) : ?>
+            checked="checked"
+        <?php endif; ?> />
+    <label for="change_password"><?php echo $this->__('Change Password') ?></label>
+
     <?php $userDefinedAttributes = $this->getLayout()->getBlock('customer_form_user_attributes'); ?>
     <?php if($userDefinedAttributes) : ?>
         <?php echo $userDefinedAttributes->setEntity($this->getCustomer())->toHtml(); ?>
     <?php endif; ?>
-    <div style="display:none;">
+    <div style="display:none">
         <h2 class="legend"><?php echo $this->__('Change Password') ?></h2>
 
         <label for="current_password"><?php echo $this->__('Current Password') ?></label>

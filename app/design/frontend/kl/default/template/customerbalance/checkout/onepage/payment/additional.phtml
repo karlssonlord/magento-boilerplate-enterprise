@@ -8,14 +8,18 @@
     <div class="checkout-onepage-payment-additional-customerbalance" id="customerbalance_placer">
         <input type="hidden" name="payment[use_customer_balance]" value="0" />
 
-        <?php $balance = Mage::helper('core')->currency($this->getBalance()); ?>
+        <input type="checkbox"
+            name="payment[use_customer_balance]"
+            value="1"
+            id="use_customer_balance"
+            <?php echo ($this->isCustomerBalanceUsed() ? 'checked' : '') ?> />
         <label for="use_customer_balance">
-            <input type="checkbox" class="checkbox" name="payment[use_customer_balance]" value="1" id="use_customer_balance" <?php echo ($this->isCustomerBalanceUsed() ? 'checked' : '') ?>/>
-            <strong>
-                <?php echo Mage::helper('enterprise_customerbalance')->__('Use Store Credit'); ?>
-                <span id="customerbalance_available_amount"><?php echo $balance; ?></span>
-            </strong>
+            <?php echo Mage::helper('enterprise_customerbalance')->__('Use Store Credit'); ?>
+            <span id="customerbalance_available_amount">
+                <?php echo Mage::helper('core')->currency($this->getBalance()); ?>
+            </span>
         </label>
+
     </div>
     <script>
         var isFullyPaidAfterCustomerBalanceApplication = <?php echo ($this->isFullyPaidAfterApplication() ? 'true' : 'false'); ?>;

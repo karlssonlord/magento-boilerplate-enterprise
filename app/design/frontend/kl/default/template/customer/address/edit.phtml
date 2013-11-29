@@ -68,20 +68,22 @@
         <?php if($this->isDefaultBilling()) : ?>
             <p><?php echo $this->__('Default Billing Address') ?></p>
         <?php elseif($this->canSetAsDefaultBilling()) : ?>
-            <label for="primary_billing">
-                <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox" />
-                <?php echo $this->__('Use as my default billing address') ?>
-            </label>
+            <input type="checkbox"
+                id="primary_billing"
+                name="default_billing"
+                value="1" />
+            <label for="primary_billing"><?php echo $this->__('Use as my default billing address') ?></label>
         <?php endif; ?>
     <?php endif; ?>
     <?php if($this->isDefaultShipping() || $this->canSetAsDefaultShipping()) : ?>
         <?php if($this->isDefaultShipping()) : ?>
             <p><?php echo $this->__('Default Shipping Address') ?></p>
         <?php elseif($this->canSetAsDefaultShipping()) : ?>
-            <label for="primary_shipping">
-                <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox" />
-                <?php echo $this->__('Use as my default shipping address') ?>
-            </label>
+            <input type="checkbox"
+                id="primary_shipping"
+                name="default_shipping"
+                value="1" />
+            <label for="primary_shipping"><?php echo $this->__('Use as my default shipping address') ?></label>
         <?php endif; ?>
     <?php endif; ?>
 

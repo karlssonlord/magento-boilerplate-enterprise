@@ -63,7 +63,6 @@
                 <action method="addJs"><script>varien/product.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
-                <action method="addItem"><type>skin_js</type><name>js/scripts.js</name></action>
                 <action method="addItem"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
 
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
@@ -71,7 +70,7 @@
                 <!-- Makes sure the package script.js is the last one to be outputted -->
                 <action method="addItem">
                     <type>skin_js</type>
-                    <name>js/script.js</name>
+                    <name>js/scripts.js</name>
                     <params><![CDATA[name="z-so-im-the-last-one"]]></params>
                 </action>
             </block>

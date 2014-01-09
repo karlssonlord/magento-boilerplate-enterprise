@@ -21,6 +21,10 @@ class KL_Core_Block_Messages extends Mage_Core_Block_Messages
      */
     public function getGroupedHtml()
     {
+        if (Mage::app()->getStore()->isAdmin()) {
+            return parent::getGroupedHtml();
+        }
+
         $types = array(
             Mage_Core_Model_Message::ERROR,
             Mage_Core_Model_Message::WARNING,

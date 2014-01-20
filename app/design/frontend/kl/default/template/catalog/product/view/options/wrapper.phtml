@@ -1,7 +1,4 @@
 <?php $_product = $this->getProduct(); ?>
-<div class="product-options <?php echo $_product->getTypeId(); ?>">
+<div class="product__options <?php echo $_product->getTypeId(); ?>">
     <?php echo $this->getChildHtml('', true, true); ?>
-    <?php if($_product->getTypeId() !== 'bundle') : ?>
-        <br class="clear" />
-    <?php endif; ?>
 </div>

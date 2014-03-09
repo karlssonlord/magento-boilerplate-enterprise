@@ -7,19 +7,19 @@
  * @author     Erik Eng <erik@karlssonlord.com>
  */
 
-class KL_Customer_Block_Account_Navigation extends Mage_Customer_Block_Account_Navigation
+class KL_Boilerplate_Block_Customer_Account_Navigation
+    extends Mage_Customer_Block_Account_Navigation
 {
-
     /**
      * Remove link from account navigation
      *
-     * @param string $name
+     * @param  string $name
+     *
      * @return void
-     * @access public
      */
     public function removeLink($name)
     {
-        if(isset($this->_links[$name])) {
+        if (isset($this->_links[$name])) {
             unset($this->_links[$name]);
         }
     }

@@ -2,10 +2,31 @@
 <config>
     <modules>
         <KL_Boilerplate>
-            <version>1.0.0</version>
+            <version>2.1.0</version>
         </KL_Boilerplate>
     </modules>
     <global>
+        <blocks>
+            <boilerplate>
+                <class>KL_Boilerplate_Block</class>
+            </boilerplate>
+            <core>
+                <rewrite>
+                    <messages>KL_Boilerplate_Block_Core_Messages</messages>
+                </rewrite>
+            </core>
+            <customer>
+                <rewrite>
+                    <address_edit>KL_Boilerplate_Block_Customer_Address_Edit</address_edit>
+                    <account_navigation>KL_Boilerplate_Block_Customer_Account_Navigation</account_navigation>
+                </rewrite>
+            </customer>
+            <page>
+                <rewrite>
+                    <html_head>KL_Boilerplate_Block_Page_Html_Head</html_head>
+                </rewrite>
+            </page>
+        </blocks>
         <models>
             <core>
                 <rewrite>
@@ -23,4 +44,81 @@
             </updates>
         </layout>
     </frontend>
+    <default>
+        <currency>
+            <import>
+                <enabled>1</enabled>
+                <error_email>support@karlssonlord.com</error_email>
+            </import>
+        </currency>
+        <catalog>
+            <!--frontend>
+                <flat_catalog_category>1</flat_catalog_category>
+                <flat_catalog_product>1</flat_catalog_product>
+            </frontend-->
+            <productalert_cron>
+                <error_email>support@karlssonlord.com</error_email>
+            </productalert_cron>
+        </catalog>
+        <customer>
+            <startup>
+                <redirect_dashboard>0</redirect_dashboard>
+            </startup>
+        </customer>
+        <tax>
+            <display>
+                <type>2</type><!-- Including tax -->
+                <shipping>2</shipping><!-- Including tax -->
+            </display>
+            <cart_display>
+                <price>2</price>
+                <subtotal>2</subtotal>
+                <shipping>2</shipping>
+                <grandtotal>1</grandtotal>
+                <full_summary>1</full_summary>
+                <zero_tax>1</zero_tax>
+            </cart_display>
+            <sales_display>
+                <price>2</price>
+                <subtotal>2</subtotal>
+                <shipping>2</shipping>
+                <grandtotal>1</grandtotal>
+                <full_summary>1</full_summary>
+                <zero_tax>1</zero_tax>
+            </sales_display>
+        </tax>
+        <shipping>
+            <origin>
+                <country_id>SE</country_id>
+                <region_id></region_id>
+                <postcode></postcode>
+            </origin>
+            <option>
+                <checkout_multiple>0</checkout_multiple>
+            </option>
+        </shipping>
+        <payment>
+            <ccsave>
+                <active>0</active>
+            </ccsave>
+        </payment>
+        <system>
+            <cron>
+                <error_email>support@karlssonlord.com</error_email>
+            </cron>
+            <log>
+                <clean_after_day>7</clean_after_day>
+                <enabled>1</enabled>
+                <error_email>support@karlssonlord.com</error_email>
+            </log>
+            <adminnotification>
+                <frequency>24</frequency>
+            </adminnotification>
+        </system>
+        <dev>
+            <template>
+                <allow_symlink>1</allow_symlink>
+            </template>
+        </dev>
+    </default>
 </config>

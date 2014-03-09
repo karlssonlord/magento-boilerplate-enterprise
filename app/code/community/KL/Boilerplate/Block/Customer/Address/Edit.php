@@ -6,7 +6,8 @@
  * @package    Mage_Customer
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-class KL_Customer_Block_Address_Edit extends Mage_Customer_Block_Address_Edit
+class KL_Boilerplate_Block_Customer_Address_Edit
+    extends Mage_Customer_Block_Address_Edit
 {
 
     public function getCountryHtmlSelect($defValue=null, $name='country_id', $id='country', $title='Country')
@@ -43,5 +44,4 @@ class KL_Customer_Block_Address_Edit extends Mage_Customer_Block_Address_Edit
         Varien_Profiler::stop('TEST: '.__METHOD__);
         return $html;
     }
-
 }

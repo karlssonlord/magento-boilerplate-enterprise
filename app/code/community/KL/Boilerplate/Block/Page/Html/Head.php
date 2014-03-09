@@ -8,7 +8,8 @@
  *
  * @see Mage_Page_Block_Html_Head
  */
-class KL_Page_Block_Html_Head extends Mage_Page_Block_Html_Head
+class KL_Boilerplate_Block_Page_Html_Head
+    extends Mage_Page_Block_Html_Head
 {
     /**
      * Build output markup for including stuff in the header (and foot) blocks

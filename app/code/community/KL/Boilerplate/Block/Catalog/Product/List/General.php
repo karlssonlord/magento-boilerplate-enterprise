@@ -20,6 +20,8 @@
  *
  * @category  KL
  * @package   KL_Boilerplate
+ * @author    Erik Eng <erik@karlssonlord.com>
+ * @author    Jacob Klapwijk <jacob@karlssonlord.com>
  * @author    Andreas Karlsson <andreas@karlssonlord.com>
  * @copyright 2014 Karlsson & Lord AB
  * @license   http://choosealicense.com/licenses/lgpl-v2.1/ LGPL v2.1

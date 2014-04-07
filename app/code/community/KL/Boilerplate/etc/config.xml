@@ -27,6 +27,11 @@
                 </rewrite>
             </page>
         </blocks>
+        <helpers>
+            <boilerplate>
+                <class>KL_Boilerplate_Helper</class>
+            </boilerplate>
+        </helpers>
         <models>
             <core>
                 <rewrite>

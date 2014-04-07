@@ -55,10 +55,10 @@ class KL_Boilerplate_Model_Design_Package
             array('_theme' => self::DEFAULT_THEME, '_package' => 'default'),
         ));
         Varien_Profiler::stop(__METHOD__);
-        
+
         return $result;
     }
-    
+
     /**
      * Get skin file url
      *
@@ -88,7 +88,7 @@ class KL_Boilerplate_Model_Design_Package
         }
         $result = $this->getSkinBaseUrl($params) . (empty($file) ? '' : $file);
         Varien_Profiler::stop(__METHOD__);
-        
+
         return $result;
     }
 }

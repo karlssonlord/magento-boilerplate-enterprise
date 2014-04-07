@@ -63,9 +63,11 @@
                 <action method="addJs"><script>varien/product.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
-                <action method="addItem"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
 
-                <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
+                <!-- TODO: Use better/safer conditions for Magento version -->
+                <action method="addItem" ifconfig="admin/enterprise_logging/actions"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
+
+                <!-- block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/ -->
 
                 <!-- Makes sure the package script.js is the last one to be outputted -->
                 <action method="addItem">

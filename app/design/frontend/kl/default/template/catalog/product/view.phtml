@@ -76,8 +76,9 @@ $_product = $this->getProduct();
         </form>
 
         <script>
+            var productAddToCartForm;
             document.observe('dom:loaded', function() {
-                var productAddToCartForm = new VarienForm('product_addtocart_form');
+                productAddToCartForm = new VarienForm('product_addtocart_form');
                 productAddToCartForm.submit = function(button, url) {
                     if (this.validator.validate()) {
                         var form = this.form;

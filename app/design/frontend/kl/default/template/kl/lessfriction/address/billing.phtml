@@ -70,7 +70,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                      */
                     if(!$this->isCustomerLoggedIn() && $this->isPrimaryAddress()): ?>
                         <div class="field">
-                            <label for="billing:email" class="required"><?php echo $this->__('Email Address') ?> <em>*</em></label>
+                            <label for="billing:email" class="required"><?php echo $this->__('Email Address') ?></label>
                             <input
                                 type="text"
                                 name="billing[email]"
@@ -82,7 +82,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                     <?php endif; ?>
                         <div class="field">
                             <label for="billing:telephone" class="required">
-                                <?php echo $this->__('Telephone') ?> <em>*</em>
+                                <?php echo $this->__('Telephone') ?>
                             </label>
                             <input
                                 type="text"
@@ -104,7 +104,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                             class="input-text <?php echo $_validationClass['company'] ?>" />
                     </li>
                     <li class="street">
-                        <label for="billing:street1" class="required"><?php echo $this->__('Address') ?> <em>*</em></label>
+                        <label for="billing:street1" class="required"><?php echo $this->__('Address') ?></label>
                         <div class="field">
                             <input
                                 type="text"
@@ -147,7 +147,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                         <li class="postaddress">
                             <div class="field">
                                 <label for="billing:postcode" class="required">
-                                    <?php echo $this->__('Zip/Postal Code') ?> <em>*</em>
+                                    <?php echo $this->__('Zip/Postal Code') ?>
                                 </label>
                                 <input
                                     type="text"
@@ -158,7 +158,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                                     class="input-text validate-zip-international <?php echo $_validationClass['postcode'] ?>" />
                             </div>
                             <div class="field">
-                                <label for="billing:city" class="required"><?php echo $this->__('City') ?> <em>*</em></label>
+                                <label for="billing:city" class="required"><?php echo $this->__('City') ?></label>
                                 <input
                                     type="text"
                                     title="<?php echo $this->__('City') ?>"
@@ -170,7 +170,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                         </li>
                         <li class="billing-region">
                             <label for="billing:region" class="required">
-                                <?php echo $this->__('State/Province') ?> <em>*</em>
+                                <?php echo $this->__('State/Province') ?>
                             </label>
                             <select id="billing:region_id"
                                 name="billing[region_id]"
@@ -190,7 +190,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                         </li>
                         <li>
                             <label for="billing:country_id" class="required">
-                                <?php echo $this->__('Country') ?> <em>*</em>
+                                <?php echo $this->__('Country') ?>
                             </label>
                             <?php echo $this->getCountryHtmlSelect('billing') ?>
                         </li>
@@ -223,13 +223,13 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                             <?php if ($this->isPrimaryAddress()) : ?>
                                 <li class="fields" id="register-customer-password">
                                     <div class="field">
-                                        <label for="billing:customer_password" class="required"><?php echo $this->__('Password') ?> <em>*</em></label>
+                                        <label for="billing:customer_password" class="required"><?php echo $this->__('Password') ?></label>
                                         <div class="input-box">
                                             <input type="password" name="billing[customer_password]" id="billing:customer_password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
                                         </div>
                                     </div>
                                     <div class="field">
-                                        <label for="billing:confirm_password" class="required"><?php echo $this->__('Confirm Password') ?> <em>*</em></label>
+                                        <label for="billing:confirm_password" class="required"><?php echo $this->__('Confirm Password') ?></label>
                                         <div class="input-box">
                                             <input type="password" name="billing[confirm_password]" title="<?php echo $this->__('Confirm Password') ?>" id="billing:confirm_password" class="input-text required-entry validate-cpassword" />
                                         </div>

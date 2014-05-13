@@ -196,13 +196,11 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                         <div class="field">
                             <label for="shipping:customer_password" class="required"><?php echo $this->__('Password') ?></label>
                             <div class="input-box">
-                                <input type="password" name="shipping[customer_password]" id="shipping:customer_password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label for="shipping:confirm_password" class="required"><?php echo $this->__('Confirm Password') ?></label>
-                            <div class="input-box">
-                                <input type="password" name="shipping[confirm_password]" title="<?php echo $this->__('Confirm Password') ?>" id="shipping:confirm_password" class="input-text required-entry validate-cpassword" />
+                                <input type="password"
+                                    name="shipping[customer_password]"
+                                    id="shipping:customer_password"
+                                    title="<?php echo $this->__('Password') ?>"
+                                    class="input-text required-entry validate-password" />
                             </div>
                         </div>
                     </li>

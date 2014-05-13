@@ -70,7 +70,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                     <div class="field">
                         <label for="billing:email" class="required"><?php echo $this->__('Email Address') ?></label>
                         <input
-                            type="text"
+                            type="email"
                             name="billing[email]"
                             id="billing:email"
                             value="<?php echo $this->escapeHtml($this->getAddress()->getEmail()) ?>"

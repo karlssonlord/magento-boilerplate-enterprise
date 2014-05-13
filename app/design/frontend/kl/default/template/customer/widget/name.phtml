@@ -4,8 +4,9 @@
  *
  */
 ?>
-<div class="<?php echo $this->getContainerClassName()?>">
-    <?php if ($this->showPrefix()) : ?>
+
+<?php if ($this->showPrefix()) : ?>
+    <div class="field">
         <label for="<?php echo $this->getFieldId('prefix')?>"
             <?php if (!$this->isPrefixRequired()) echo ' class="optional"' ?>>
             <?php echo $this->__('Prefix') ?>
@@ -30,16 +31,22 @@
                 <?php endforeach ?>
             </select>
         <?php endif; ?>
-    <?php endif; ?>
-        <label for="<?php echo $this->getFieldId('firstname')?>"><?php echo $this->__('First Name') ?></label>
-        <input type="text"
-            id="<?php echo $this->getFieldId('firstname')?>"
-            name="<?php echo $this->getFieldName('firstname')?>"
-            value="<?php echo $this->htmlEscape($this->getObject()->getFirstname()) ?>"
-            title="<?php echo $this->__('First Name') ?>"
-            class="input-text required-entry"
-            <?php echo $this->getFieldParams() ?> />
-    <?php if($this->showMiddlename()) : ?>
+    </div>
+<?php endif; ?>
+
+<div class="field">
+    <label for="<?php echo $this->getFieldId('firstname')?>"><?php echo $this->__('First Name') ?></label>
+    <input type="text"
+        id="<?php echo $this->getFieldId('firstname')?>"
+        name="<?php echo $this->getFieldName('firstname')?>"
+        value="<?php echo $this->htmlEscape($this->getObject()->getFirstname()) ?>"
+        title="<?php echo $this->__('First Name') ?>"
+        class="input-text required-entry"
+        <?php echo $this->getFieldParams() ?> />
+</div>
+
+<?php if($this->showMiddlename()) : ?>
+    <div class="field">
         <label for="<?php echo $this->getFieldId('middlename')?>"><?php echo $this->__('M.I.') ?></label>
         <input type="text"
             id="<?php echo $this->getFieldId('middlename')?>"
@@ -47,16 +54,22 @@
             value="<?php echo $this->htmlEscape($this->getObject()->getMiddlename()) ?>"
             title="<?php echo $this->__('M.I.') ?>"
             class="input-text" <?php echo $this->getFieldParams() ?> />
-    <?php endif; ?>
-        <label for="<?php echo $this->getFieldId('lastname')?>"><?php echo $this->__('Last Name') ?></label>
-        <input type="text"
-            id="<?php echo $this->getFieldId('lastname')?>"
-            name="<?php echo $this->getFieldName('lastname')?>"
-            value="<?php echo $this->htmlEscape($this->getObject()->getLastname()) ?>"
-            title="<?php echo $this->__('Last Name') ?>"
-            class="input-text required-entry"
-            <?php echo $this->getFieldParams() ?> />
-    <?php if($this->showSuffix()) : ?>
+    </div>
+<?php endif; ?>
+
+<div class="field">
+    <label for="<?php echo $this->getFieldId('lastname')?>"><?php echo $this->__('Last Name') ?></label>
+    <input type="text"
+        id="<?php echo $this->getFieldId('lastname')?>"
+        name="<?php echo $this->getFieldName('lastname')?>"
+        value="<?php echo $this->htmlEscape($this->getObject()->getLastname()) ?>"
+        title="<?php echo $this->__('Last Name') ?>"
+        class="input-text required-entry"
+        <?php echo $this->getFieldParams() ?> />
+</div>
+
+<?php if($this->showSuffix()) : ?>
+    <div class="field">
         <label for="<?php echo $this->getFieldId('suffix')?>"
             <?php if(!$this->isSuffixRequired()) echo ' class="optional"' ?>>
             <?php echo $this->__('Suffix') ?><?php if (!$this->isSuffixRequired()) echo ' <span>'.$this->__('optional').'</span>' ?></label>
@@ -80,5 +93,5 @@
             <?php endforeach; ?>
             </select>
         <?php endif; ?>
-    <?php endif; ?>
-</div>
+    </div>
+<?php endif; ?>

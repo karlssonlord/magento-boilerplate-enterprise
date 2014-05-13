@@ -83,7 +83,7 @@ $_validationClass['streetAlt'] = trim(str_replace('required-entry', '', $_valida
                             <?php echo $this->__('Telephone') ?>
                         </label>
                         <input
-                            type="text"
+                            type="tel"
                             name="billing[telephone]"
                             value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>"
                             title="<?php echo $this->__('Telephone') ?>"

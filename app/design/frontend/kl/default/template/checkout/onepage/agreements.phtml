@@ -1,0 +1,39 @@
+<?php
+/**
+ * @see Mage_Checkout_Block_Agreements
+ *
+ */
+
+if (!$this->getAgreements()) return;
+?>
+
+<ol class="agreements">
+    <?php foreach ($this->getAgreements() as $_a) : ?>
+        <?php
+        $_labelText = str_replace($_a->getName(),
+            '<a href="#agreement--'.$_a->getId().'" class="js-terms">'.$_a->getName().'</a>',
+            $_a->getCheckboxText());
+        ?>
+        <li class="agreement">
+            <div class="agreement__content"
+                id="agreement--<?php echo $_a->getId(); ?>"
+                style="display:none">
+                <?php if($_a->getIsHtml()) : ?>
+                    <?php echo $_a->getContent() ?>
+                <?php else : ?>
+                    <?php echo nl2br($this->escapeHtml($_a->getContent())) ?>
+                <?php endif; ?>
+            </div>
+            <label>
+                <input type="checkbox"
+                    id="agreement-<?php echo $_a->getId()?>"
+                    name="agreement[<?php echo $_a->getId()?>]"
+                    value="1"
+                    title="<?php echo $this->escapeHtml($_a->getCheckboxText()) ?>"
+                    checked="checked"
+                    disabled />
+                <?php echo $_labelText; ?>
+            </label>
+        </li>
+    <?php endforeach ?>
+</ol>

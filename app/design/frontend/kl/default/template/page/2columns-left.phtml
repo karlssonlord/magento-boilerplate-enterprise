@@ -1,19 +1,19 @@
-    <?php echo $this->getChildHtml('head') ?>
-    <body<?php echo $this->getBodyClass()?' class="col2-left-layout '.$this->getBodyClass().'"':'' ?>>
-        <?php echo $this->getChildHtml('after_body_start') ?>
-        <?php echo $this->getChildHtml('global_notices') ?>
-        <?php echo $this->getChildHtml('header') ?>
-        <?php echo $this->getChildHtml('breadcrumbs') ?>
-        <?php echo $this->getChildHtml('global_messages') ?>
-        <div class="content">
-            <div role="main">
-                <?php echo $this->getChildHtml('content') ?>
-            </div>
-            <aside><?php echo $this->getChildHtml('left') ?></aside>
+<?php echo $this->getChildHtml('head') ?>
+<body<?php echo $this->getBodyClass()?' class="col2-left-layout '.$this->getBodyClass().'"':'' ?>>
+    <?php echo $this->getChildHtml('after_body_start') ?>
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <?php echo $this->getChildHtml('header') ?>
+    <?php echo $this->getChildHtml('breadcrumbs') ?>
+    <?php echo $this->getChildHtml('global_messages') ?>
+    <div class="content">
+        <div role="main">
+            <?php echo $this->getChildHtml('content') ?>
         </div>
-        <?php echo $this->getChildHtml('footer') ?>
-        <?php echo $this->getChildHtml('before_body_end') ?>
-        <?php echo $this->getAbsoluteFooter() ?>
-        <?php echo $this->getChildHtml('foot') ?>
-    </body>
+        <aside><?php echo $this->getChildHtml('left') ?></aside>
+    </div>
+    <?php echo $this->getChildHtml('footer') ?>
+    <?php echo $this->getChildHtml('before_body_end') ?>
+    <?php echo $this->getAbsoluteFooter() ?>
+    <?php echo $this->getChildHtml('foot') ?>
+</body>
 </html>

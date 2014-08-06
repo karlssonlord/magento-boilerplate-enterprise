@@ -159,4 +159,22 @@
            <action method="addItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action>
         </reference>
     </wishlist_index_index>
+
+
+    <!-- PAYPAL -->
+
+    <paypal_express_review>
+        <reference name="paypal.express.review">
+            <block type="paypal/express_review_billing" name="express.review.billing" as="billing" template="paypal/express/review/address.phtml"/>
+            <block type="paypal/express_review_shipping" name="express.review.shipping" as="shipping" template="paypal/express/review/address.phtml"/>
+            <block type="paypal/express_review" name="express.review.shipping.method" as="shipping_method" template="paypal/express/review/shipping/method.phtml"/>
+            <block type="paypal/express_review_details" name="paypal.express.review.details" as="details" template="paypal/express/review/details.phtml">
+                <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/onepage/review/item.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/onepage/review/item.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/onepage/review/item.phtml</template></action>
+                <block type="checkout/cart_totals" name="paypal.express.review.details.totals" as="totals" template="checkout/onepage/review/totals.phtml"/>
+            </block>
+            <block type="checkout/agreements" name="paypal.express.review.details.agreements" as="agreements" template="checkout/onepage/agreements.phtml"/>
+        </reference>
+    </paypal_express_review>
 </layout>

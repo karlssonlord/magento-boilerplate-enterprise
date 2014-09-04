@@ -1,0 +1,34 @@
+<script>
+    var quoteBaseGrandTotal = <?php echo (float)$this->getQuoteBaseGrandTotal(); ?>,
+        checkQuoteBaseGrandTotal = quoteBaseGrandTotal,
+        lastPrice,
+        payment;
+
+    (function() {
+        var setupPayment = function() {
+            payment = new PaymentMethod({
+                form:      'co-payment-form',
+                saveUrl:   '<?php echo $this->getUrl('checkout/onepage/savePayment') ?>',
+                relations: ['review', 'shipping']
+            });
+            payment.currentMethod = "<?php echo $this->getChild('methods')->getSelectedMethodCode() ?>";
+            if(typeof PaymentMethod !== 'undefined' && PaymentMethod.prototype.reloaded) {
+                payment.reloaded();
+            }
+        }
+
+        <?php if($this->getRequest()->isXmlHttpRequest()) : ?>
+            setupPayment();
+        <?php else : ?>
+            document.observe('dom:loaded', function() {
+                setupPayment();
+            });
+        <?php endif; ?>
+    })();
+</script>
+<?php if ($this->isVisible()) : ?>
+    <h2><?php echo $this->__('Payment Method'); ?></h2>
+    <form action="" id="co-payment-form">
+        <?php echo $this->getChildHtml('methods') ?>
+    </form>
+<?php endif; ?>

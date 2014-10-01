@@ -25,7 +25,8 @@ $_img     = '<img itemprop="image"
                         <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile()); ?>"
                             title="<?php echo $this->htmlEscape($_image->getLabel()) ?>">
                             <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(64); ?>"
-                                alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
+                                 alt="<?php echo $this->htmlEscape($_product->getName()) ?>"
+                                 title="<?php echo $this->htmlEscape($_product->getName()) ?>" /><!--$_image->getLabel()-->
                         </a>
                     </li>
                 <?php endforeach; ?>

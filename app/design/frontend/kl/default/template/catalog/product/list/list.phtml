@@ -20,7 +20,8 @@ $_helper  = $this->helper('catalog/output');
                 title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
                 class="product-image">
                 <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(256); ?>"
-                    alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                    alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"
+                    title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>"/>
             </a>
 
             <<?php echo $_heading; ?> class="product-name">

@@ -1,0 +1,134 @@
+/**
+ * Layout Partial
+ *
+ * - Helpers
+ * - General
+ * - Header
+ * - Footer
+ * - Catalog
+ *
+ */
+
+
+/* HELPERS ------------------------------------------------------------------ */
+
+.wrapper {
+    max-width: 1142px;
+    margin: 0 auto;
+    padding: 0 12px; // minimum content padding
+}
+
+%block {
+    margin: 0 0 $line;
+}
+
+%nolist { // reset list typography styles
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        padding: 0;
+    }
+}
+
+%grid {
+    @if $debug{
+        background: rgba(green, .15); // TODO: Remove
+        margin-bottom: $line; // TODO: Remove
+    }
+    font-size: 0;
+}
+
+%grid--two-column {
+    @extend %grid;
+
+    @include respond-to(mobile) {
+        %column {
+            width: auto;
+            margin: 0 1%;
+        }
+    }
+}
+
+%grid--two-column--right {
+    @extend %grid--two-column;
+}
+
+%grid--two-column--left {
+    @extend %grid--two-column;
+    direction: rtl;
+}
+
+%grid--three-column {
+    @extend %grid;
+}
+
+%column {
+    @include inline-block;
+
+    margin: 0 1%;
+    text-align: left;
+    vertical-align: top;
+    direction: ltr;
+    margin-bottom: $line;
+    font-size: $font-size;
+
+    @include respond-to(mobile) {
+        width: $column-full-width;
+    }
+
+    @if $debug{
+        background: rgba(0,0,0,.2); // TODO: Remove
+    }
+}
+
+%column-fake { // Use this to apply "full width" when not inside a grid wrapper
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+%column--full {
+    @extend %column;
+    width: $column-full-width;
+}
+
+%column--two-thirds { // Eg. a banner on the front page
+    @extend %column;
+    width: $column-width-two-third;
+}
+
+%column--half { // Eg. a product in a category list on mobile
+    @extend %column;
+    width: $column-width-half;
+}
+
+%column--third { // Eg. a product in a category list
+    @extend %column;
+    width: $column-width-third;
+}
+
+%column--fifth {
+    @extend %column;
+    width: $column-width-fifth;
+}
+
+/* MAGENTO DEFAULT§ ------------------------------------------------------------- */
+
+/* The following is slighly experimental. Trying to set the grid on simple pages such as logout, order success, etc. It's some pretty
+global styles, maybe too global. */
+
+/* It's OK, we just need to reset the font-size (%column) even if no column is extended for all given views.  */
+
+/*
+.col-main {
+    @extend %grid;
+
+    & > div, // TODO: This is too general, example: #messages_product_view
+    & > article,
+    & > section,
+    & > ul {
+        @extend %column--full;
+    }
+}
+*/

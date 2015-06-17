@@ -12,25 +12,6 @@
             <action method="removeItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>
             <action method="removeItem"><type>skin_css</type><name>css/widgets.css</name></action>
             <action method="removeItem"><type>skin_css</type><name>css/print.css</name></action>
-
-            <!-- Remove native javascript that we should load in the bottom of the page instead -->
-            <action method="removeItem"><type>js</type><name>lib/ccard.js</name></action>
-            <!--action method="removeItem"><type>js</type><name>prototype/validation.js</name></action-->
-            <action method="removeItem"><type>js</type><name>scriptaculous/builder.js</name></action>
-            <action method="removeItem"><type>js</type><name>scriptaculous/effects.js</name></action>
-            <action method="removeItem"><type>js</type><name>scriptaculous/dragdrop.js</name></action>
-            <action method="removeItem"><type>js</type><name>scriptaculous/controls.js</name></action>
-            <action method="removeItem"><type>js</type><name>scriptaculous/slider.js</name></action>
-            <action method="removeItem"><type>js</type><name>varien/js.js</name></action>
-            <!--action method="removeItem"><type>js</type><name>varien/form.js</name></action-->
-            <action method="removeItem"><type>js</type><name>varien/menu.js</name></action>
-            <action method="removeItem"><type>js</type><name>mage/translate.js</name></action>
-            <action method="removeItem"><type>js</type><name>mage/cookies.js</name></action>
-            <action method="removeItem"><type>skin_js</type><name>js/scripts.js</name></action>
-            <action method="removeItem"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
-            <action method="removeItem"><type>skin_js</type><script>js/enterprise/wishlist.js</script></action>
-            <action method="removeItem"><type>skin_js</type><name>js/iehover-fix.js</name></action>
-            <action method="unsetChild"><name>js_cookies</name></action>
             <remove name="right.permanent.callout"/>
             <remove name="left.permanent.callout"/>
             <remove name="paypal.partner.right.logo"/>
@@ -47,35 +28,6 @@
 
         <reference name="root">
             <block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
-
-            <block type="page/html_head" name="foot" as="foot" template="page/html/foot.phtml">
-                <!-- Add native JavaScript that we have removed from head -->
-                <action method="addJs"><script>lib/ccard.js</script></action>
-                <!--action method="addJs"><script>prototype/validation.js</script></action-->
-                <action method="addJs"><script>scriptaculous/builder.js</script></action>
-                <action method="addJs"><script>scriptaculous/effects.js</script></action>
-                <action method="addJs"><script>scriptaculous/dragdrop.js</script></action>
-                <action method="addJs"><script>scriptaculous/controls.js</script></action>
-                <action method="addJs"><script>scriptaculous/slider.js</script></action>
-                <action method="addJs"><script>varien/js.js</script></action>
-                <!--action method="addJs"><script>varien/form.js</script></action-->
-                <action method="addJs"><script>varien/menu.js</script></action>
-                <action method="addJs"><script>varien/product.js</script></action>
-                <action method="addJs"><script>mage/translate.js</script></action>
-                <action method="addJs"><script>mage/cookies.js</script></action>
-
-                <!-- TODO: Use better/safer conditions for Magento version -->
-                <action method="addItem" ifconfig="admin/enterprise_logging/actions"><type>skin_js</type><name>js/enterprise/catalogevent.js</name></action>
-
-                <!-- block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/ -->
-
-                <!-- Makes sure the package script.js is the last one to be outputted -->
-                <action method="addItem">
-                    <type>skin_js</type>
-                    <name>js/scripts.js</name>
-                    <params><![CDATA[name="z-so-im-the-last-one"]]></params>
-                </action>
-            </block>
         </reference>
     </default>
 
@@ -110,18 +62,8 @@
     </catalog_category_layered>
 
     <catalog_product_compare_index>
-        <reference name="head">
-            <!-- Remove native JavaScript from head -->
-            <action method="removeItem"><type>js</type><name>scriptaculous/scriptaculous.js</name></action>
-            <action method="removeItem"><type>js</type><name>varien/product.js</name></action>
-        </reference>
         <reference name="root">
             <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
-            <reference name="foot">
-                <!-- Add native JavaScript to footer -->
-                <action method="addJs"><script>scriptaculous/scriptaculous.js</script></action>
-                <action method="addJs"><script>varien/product.js</script></action>
-            </reference>
         </reference>
     </catalog_product_compare_index>
 
@@ -133,16 +75,6 @@
             <action method="removeItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name></action>
             <action method="removeItem"><type>js</type><name>calendar/calendar.js</name></action>
             <action method="removeItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
-            <!-- Remove native JavaScript from head -->
-            <action method="removeItem"><type>js</type><name>varien/product.js</name></action>
-            <action method="removeItem"><type>js</type><name>varien/configurable.js</name></action>
-        </reference>
-        <reference name="root">
-            <reference name="foot">
-                <!-- Add native JavaScript to footer -->
-                <action method="addJs"><script>varien/product.js</script></action>
-                <action method="addJs"><script>varien/configurable.js</script></action>
-            </reference>
         </reference>
 
         <reference name="product.info.upsell">
